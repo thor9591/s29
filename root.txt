@@ -1,0 +1,79 @@
+//s29
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct node
+{
+int data;
+struct node *next;
+} NODE;
+void append(NODE **head, int n)
+{
+NODE *newnode;
+newnode = malloc(sizeof(NODE));
+newnode->data = n;
+if (*head == NULL)
+newnode->next = newnode;
+else
+{
+newnode->next = (*head)->next;
+(*head)->next = newnode;
+}
+*head = newnode;
+}
+void create(NODE **head, int n)
+{
+int i, data;
+NODE *newnode;
+for (i = 1; i <= n; i++)
+{
+printf("Element Append %d\n", i);
+scanf("%d", &data);
+newnode = malloc(sizeof(NODE));
+newnode->data = data;
+if (*head == NULL)
+newnode->next = newnode;
+else
+{
+newnode->next = (*head)->next;
+(*head)->next = newnode;
+}
+*head = newnode;
+}
+}
+void display(NODE *head)
+{
+NODE *temp = head;
+do
+{
+printf(" %d ", temp->data);
+temp = temp->next;
+} while (temp != head);
+printf("\n");
+}
+main()
+{
+int n;
+NODE *head = NULL;
+printf("How many elements you want to Append? \n ");
+scanf("%d", &n);
+create(&head, n);
+printf("Display the elements:\n ");
+display(head);
+}
+
+
+//cc filename.h
+//cc filename.c
+//  ./a.out
+
+//OUTPUT:
+//How many elements you want to Append?
+//3
+//Element Append 1
+//45
+//Element Append 2
+//1
+//Element Append 3
+//2
+//Display the elements:
+//2 45 1
